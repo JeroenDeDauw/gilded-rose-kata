@@ -1,13 +1,5 @@
 # Gilded Rose Kata for PHP
 
-Port of the Gilded Rose Kata for C# (https://github.com/NotMyself/GildedRose)
-
-## Install
-
-* Git Checkout: git clone https://github.com/qafoo/gilded-rose-kata
-* Generate Autoloader: composer dump-autoload
-* Run tests with "phpunit"
-
 ## Introduction
 
 Hi and welcome to team Gilded Rose. As you know, we are a small inn with a
@@ -53,19 +45,3 @@ cover for you). Your work needs to be completed by Friday, February 18, 2011
 Just for clarification, an item can never have its Quality increase above 50,
 however "Sulfuras" is a legendary item and as such its Quality is 80 and it
 never alters.
-
-## Task
-
-Start Refactoring this legacy code to emerge into a TDD design, keeping
-the requirements that are already covered by the project. Start
-implementing tests for the already known dependencies, then start refactoring
-the code to be SOLID.
-
-## Complexity
-
-The GildedRose UpdateQuality() method has a very high complexity and is very 
-useful to teach refactoring and testing of legacy code:
-
-- The method UpdateQuality() has a Cyclomatic Complexity of 19. The configured cyclomatic complexity threshold is 10.
-- The method UpdateQuality() has an NPath complexity of 211. The configured NPath complexity threshold is 200.
-
