@@ -1,7 +1,7 @@
 # Gilded Rose Kata for PHP
 
 ## Introduction
-
+sdsd
 Hi and welcome to team Gilded Rose. As you know, we are a small inn with a
 prime location in a prominent city ran by a friendly innkeeper named Allison.
 We also buy and sell only the finest goods. Unfortunately, our goods are
@@ -13,8 +13,11 @@ category of items. First an introduction to our system:
 
 - All items have a SellIn value which denotes the number of days we have to
 sell the item
+
+
 - All items have a Quality value which denotes how valuable the
 item is 
+
 - At the end of each day our system lowers both values for every item
 
 Pretty simple, right? Well this is where it gets interesting:
@@ -45,3 +48,10 @@ cover for you). Your work needs to be completed by Friday, February 18, 2011
 Just for clarification, an item can never have its Quality increase above 50,
 however "Sulfuras" is a legendary item and as such its Quality is 80 and it
 never alters.
+
+SellInDays
+
+
+quality 50/80
+
+
