@@ -2,7 +2,8 @@
 
 namespace GildedRose\Tests;
 
-class GildedRoseTest extends \PHPUnit_Framework_TestCase
+class GildedRoseTestCase extends \PHPUnit_Framework_TestCase
 {
+
 }
 
