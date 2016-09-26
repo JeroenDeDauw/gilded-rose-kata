@@ -79,6 +79,11 @@ class Program
         $this->items = $items;
     }
 
+    public function getItems()
+    {
+        return $this->items;
+    }
+
     public function UpdateQuality()
     {
         for ($i = 0; $i < count($this->items); $i++) {

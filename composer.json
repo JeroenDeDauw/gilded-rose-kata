@@ -5,6 +5,8 @@
             "GildedRose\\Tests\\": "tests/",
             "GildedRose\\": "src/"
         }
+    },
+    "require": {
+        "phpunit/phpunit": "^5.5"
     }
 }
-
