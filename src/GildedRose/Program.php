@@ -1,6 +1,7 @@
 <?php
 
 namespace GildedRose;
+use GildedRose\DataProvider\ItemsProvider;
 
 /**
  * Hi and welcome to team Gilded Rose.
@@ -53,21 +54,16 @@ class Program
     {
         echo "HELLO\n";
 
-        $app = new Program(array(
-              new Item(array( 'name' => "+5 Dexterity Vest",'sellIn' => 10,'quality' => 20)),
-              new Item(array( 'name' => "Aged Brie",'sellIn' => 2,'quality' => 0)),
-              new Item(array( 'name' => "Elixir of the Mongoose",'sellIn' => 5,'quality' => 7)),
-              new Item(array( 'name' => "Sulfuras, Hand of Ragnaros",'sellIn' => 0,'quality' => 80)),
-              new Item(array(
-                     'name' => "Backstage passes to a TAFKAL80ETC concert",
-                     'sellIn' => 15,
-                     'quality' => 20
-              )),
-              new Item(array('name' => "Conjured Mana Cake",'sellIn' => 3,'quality' => 6)),
-        ));
+        $items = ItemsProvider::getItems();
+        $app = new Program($items);
 
         $app->UpdateQuality();
 
+        $app->printItems($app);
+    }
+
+
+    private function printItems(Program $app) {
         echo sprintf("%50s - %7s - %7s\n", "Name", "SellIn", "Quality");
         foreach ($app->items as $item) {
             echo sprintf("%50s - %7d - %7d\n", $item->name, $item->sellIn, $item->quality);
