@@ -69,7 +69,7 @@ class Program
         $app->UpdateQuality();
 
         echo sprintf("%50s - %7s - %7s\n", "Name", "SellIn", "Quality");
-        foreach ($app->items as $item) {
+        foreach ($app->getItems() as $item) {
             echo sprintf("%50s - %7d - %7d\n", $item->name, $item->sellIn, $item->quality);
         }
     }
@@ -77,6 +77,14 @@ class Program
     public function __construct(array $items)
     {
         $this->items = $items;
+    }
+
+    /**
+     * @return Item[]
+     */
+    public function getItems()
+    {
+        return $this->items;
     }
 
     public function UpdateQuality()
@@ -112,21 +120,27 @@ class Program
                 $this->items[$i]->sellIn = $this->items[$i]->sellIn - 1;
             }
 
+			if ($this->items[$i]->name == "Conjured Mana Cake") {
+				$this->items[$i]->quality -= 1;
+			}
+
             if ($this->items[$i]->sellIn < 0) {
-                if ($this->items[$i]->name != "Aged Brie") {
-                    if ($this->items[$i]->name != "Backstage passes to a TAFKAL80ETC concert") {
-                        if ($this->items[$i]->quality > 0) {
-                            if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") {
-                                $this->items[$i]->quality = $this->items[$i]->quality - 1;
-                            }
-                        }
-                    } else {
-                        $this->items[$i]->quality = $this->items[$i]->quality - $this->items[$i]->quality;
-                    }
+                if ($this->items[$i]->name == "Aged Brie") {
+					if ($this->items[$i]->quality < 50) {
+						$this->items[$i]->quality = $this->items[$i]->quality + 1;
+					}
+               	} elseif ($this->items[$i]->name == "Conjured Mana Cake") { // - "Conjured" items degrade in Quality twice as fast as normal items
+					$this->items[$i]->quality -= 2;
                 } else {
-                    if ($this->items[$i]->quality < 50) {
-                        $this->items[$i]->quality = $this->items[$i]->quality + 1;
-                    }
+					if ($this->items[$i]->name != "Backstage passes to a TAFKAL80ETC concert") {
+						if ($this->items[$i]->quality > 0) {
+							if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") {
+								$this->items[$i]->quality = $this->items[$i]->quality - 1;
+							}
+						}
+					} else {
+						$this->items[$i]->quality = $this->items[$i]->quality - $this->items[$i]->quality;
+					}
                 }
             }
         }
