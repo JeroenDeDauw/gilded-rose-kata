@@ -47,7 +47,7 @@ namespace GildedRose;
  */
 class Program
 {
-    private $items = array();
+    public $items = array();
 
     public static function Main()
     {
@@ -110,6 +110,10 @@ class Program
 
             if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") {
                 $this->items[$i]->sellIn = $this->items[$i]->sellIn - 1;
+            }
+
+            if ($this->items[$i]->name == "Conjured Mana Cake") {
+                $this->items[$i]->quality--;
             }
 
             if ($this->items[$i]->sellIn < 0) {
