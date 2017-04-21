@@ -13,7 +13,7 @@ Vagrant.configure(2) do |config|
 		add-apt-repository ppa:ondrej/php -y
 		apt-get update
 
-		apt-get install -y php7.1 php7.1-xml php7.1-zip
+		apt-get install -y php7.1 php7.1-xml php7.1-zip php7.1-mbstring
 	SHELL
 
 	config.vm.provision "shell", inline: <<-SHELL
