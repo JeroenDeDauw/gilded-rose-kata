@@ -14,6 +14,8 @@ sell the item
 item is 
 - At the end of each day our system lowers both values for every item
 
+
+
 Pretty simple, right? Well this is where it gets interesting:
 
 - Once the sell by date has passed, Quality degrades twice as fast 
