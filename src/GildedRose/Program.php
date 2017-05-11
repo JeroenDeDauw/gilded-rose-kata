@@ -63,6 +63,7 @@ class Program
                      'sellIn' => 15,
                      'quality' => 20
               )),
+			  // TODO: We're assuming this will be the only Conjured item for now.
               new Item(array('name' => "Conjured Mana Cake",'sellIn' => 3,'quality' => 6)),
         ));
 
@@ -81,14 +82,22 @@ class Program
 
     public function UpdateQuality()
     {
+		// TODO:
+		// * Let's give items explicit types rather than strcmping...
+		// * Quality thresholds could be moved to configuration.
+		// * Protect against running > once per day.
+
         for ($i = 0; $i < count($this->items); $i++) {
             if ($this->items[$i]->name != "Aged Brie" && $this->items[$i]->name != "Backstage passes to a TAFKAL80ETC concert") {
                 if ($this->items[$i]->quality > 0) {
                     if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") {
+						// All items that are not named above degrade in quality.
+                        // XXX: this is where Conjured --quality
                         $this->items[$i]->quality = $this->items[$i]->quality - 1;
                     }
                 }
             } else {
+				// This item is either aged brie or backstage passes.
                 if ($this->items[$i]->quality < 50) {
                     $this->items[$i]->quality = $this->items[$i]->quality + 1;
 
@@ -109,6 +118,7 @@ class Program
             }
 
             if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") {
+				// Any item except Sulfuras is getting closer to its sell-by date.
                 $this->items[$i]->sellIn = $this->items[$i]->sellIn - 1;
             }
 
@@ -117,6 +127,7 @@ class Program
                     if ($this->items[$i]->name != "Backstage passes to a TAFKAL80ETC concert") {
                         if ($this->items[$i]->quality > 0) {
                             if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") {
+                                // XXX: this is where Conjured --quality
                                 $this->items[$i]->quality = $this->items[$i]->quality - 1;
                             }
                         }
@@ -129,6 +140,10 @@ class Program
                     }
                 }
             }
+
+            if ($this->items[$i]->quality < 0) {
+				$this->items[$i]->quality = 0;
+			}
         }
     }
 }
