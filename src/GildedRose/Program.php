@@ -74,6 +74,10 @@ class Program
         }
     }
 
+	public function getItems(): array {
+		return $this->items;
+    }
+
     public function __construct(array $items)
     {
         $this->items = $items;
