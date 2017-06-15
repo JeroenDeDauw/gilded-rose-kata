@@ -108,9 +108,7 @@ class Program
                 }
             }
 
-            if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") {
-                $this->items[$i]->sellIn = $this->items[$i]->sellIn - 1;
-            }
+            $this->updateSellInValue($this->items[$i]);
 
             if ($this->items[$i]->sellIn < 0) {
                 if ($this->items[$i]->name != "Aged Brie") {
@@ -129,6 +127,16 @@ class Program
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * Subtracts 1 from the sellIn value of an Item.
+     */
+    private function updateSellInValue(Item $currentItem)
+    {
+        if ($currentItem->name !== "Sulfuras, Hand of Ragnaros") {
+            $currentItem->sellIn = $currentItem->sellIn - 1;
         }
     }
 }
