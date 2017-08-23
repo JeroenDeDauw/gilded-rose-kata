@@ -131,4 +131,12 @@ class Program
             }
         }
     }
+
+    /**
+     * @return Item[]
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
 }
