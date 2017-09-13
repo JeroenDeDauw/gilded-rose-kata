@@ -54,7 +54,7 @@ class Program
         echo "HELLO\n";
 
         $app = new Program(array(
-              new Item(array( 'name' => "+5 Dexterity Vest",'sellIn' => 10,'quality' => 20)),
+              new CategorizedItem("+5 Dexterity Vest",10,20, CategorizedItem::CAT_NORMAL),
               new Item(array( 'name' => "Aged Brie",'sellIn' => 2,'quality' => 0)),
               new Item(array( 'name' => "Elixir of the Mongoose",'sellIn' => 5,'quality' => 7)),
               new Item(array( 'name' => "Sulfuras, Hand of Ragnaros",'sellIn' => 0,'quality' => 80)),
@@ -81,6 +81,7 @@ class Program
 
     public function UpdateQuality()
     {
+
         for ($i = 0; $i < count($this->items); $i++) {
             if ($this->items[$i]->name != "Aged Brie" && $this->items[$i]->name != "Backstage passes to a TAFKAL80ETC concert") {
                 if ($this->items[$i]->quality > 0) {
