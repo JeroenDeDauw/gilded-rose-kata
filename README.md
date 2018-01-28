@@ -16,8 +16,8 @@ item is
 
 Pretty simple, right? Well this is where it gets interesting:
 
-- Once the sell by date has passed, Quality degrades twice as fast 
-- The Quality of an item is never negative 
+- Once the sell by date has passed, Quality degrades twice as fast
+- The Quality of an item is never negative
 - "Aged Brie" actually increases in Quality the older it gets
 - The Quality of an item is never more than 50
 - "Sulfuras", being a legendary item, never has to be sold or decreases in
@@ -42,3 +42,7 @@ cover for you). Your work needs to be completed by Friday, February 18, 2011
 Just for clarification, an item can never have its Quality increase above 50,
 however "Sulfuras" is a legendary item and as such its Quality is 80 and it
 never alters.
+
+Installation:
+	* run composer install
+	
