@@ -49,24 +49,34 @@ class Program
 {
     private $items = array();
 
+    private const DEXTERITY_VEST = "+5 Dexterity Vest";
+    private const ELIXIR_MONGOOSE = "Elixir of the Mongoose";
+    private const CONJURED_MANA_CAKE = "Conjured Mana Cake";
+
+    public const AGED_BRIE = "Aged Brie";
+	private const SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
+	private const BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
+
+	private const REGULAR_ITEMS = [self::DEXTERITY_VEST, self::ELIXIR_MONGOOSE, self::CONJURED_MANA_CAKE];
+
     public static function Main()
     {
         echo "HELLO\n";
 
         $app = new Program(array(
-              new Item(array( 'name' => "+5 Dexterity Vest",'sellIn' => 10,'quality' => 20)),
-              new Item(array( 'name' => "Aged Brie",'sellIn' => 2,'quality' => 0)),
-              new Item(array( 'name' => "Elixir of the Mongoose",'sellIn' => 5,'quality' => 7)),
-              new Item(array( 'name' => "Sulfuras, Hand of Ragnaros",'sellIn' => 0,'quality' => 80)),
+              new Item(array( 'name' => self::DEXTERITY_VEST,'sellIn' => 10,'quality' => 20)),
+              new Item(array( 'name' => self::AGED_BRIE,'sellIn' => 2,'quality' => 0)),
+              new Item(array( 'name' => self::ELIXIR_MONGOOSE,'sellIn' => 5,'quality' => 7)),
+              new Item(array( 'name' => self::SULFURAS_HAND_OF_RAGNAROS,'sellIn' => 0,'quality' => 80)),
               new Item(array(
-                     'name' => "Backstage passes to a TAFKAL80ETC concert",
+                     'name' => self::BACKSTAGE_PASS,
                      'sellIn' => 15,
                      'quality' => 20
               )),
-              new Item(array('name' => "Conjured Mana Cake",'sellIn' => 3,'quality' => 6)),
+              new Item(array('name' => self::CONJURED_MANA_CAKE,'sellIn' => 3,'quality' => 6)),
         ));
 
-        $app->UpdateQuality();
+        $app->UpdateItems();
 
         echo sprintf("%50s - %7s - %7s\n", "Name", "SellIn", "Quality");
         foreach ($app->items as $item) {
@@ -79,56 +89,73 @@ class Program
         $this->items = $items;
     }
 
-    public function UpdateQuality()
+    public function UpdateItems()
     {
         for ($i = 0; $i < count($this->items); $i++) {
-            if ($this->items[$i]->name != "Aged Brie" && $this->items[$i]->name != "Backstage passes to a TAFKAL80ETC concert") {
-                if ($this->items[$i]->quality > 0) {
-                    if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") {
-                        $this->items[$i]->quality = $this->items[$i]->quality - 1;
-                    }
+            $this->UpdateQuality($this->items[$i]);
+        }
+    }
+
+    public function UpdateQuality(Item $item)
+    {
+        if ($item->name != "Aged Brie" && $item->name != "Backstage passes to a TAFKAL80ETC concert") {
+            if ($item->quality > 0) {
+                if ($item->name != "Sulfuras, Hand of Ragnaros") {
+                    $item->quality = $item->quality - 1;
                 }
-            } else {
-                if ($this->items[$i]->quality < 50) {
-                    $this->items[$i]->quality = $this->items[$i]->quality + 1;
+            }
+        } else {
+            if ($item->quality < 50) {
+                $item->quality = $item->quality + 1;
 
-                    if ($this->items[$i]->name == "Backstage passes to a TAFKAL80ETC concert") {
-                        if ($this->items[$i]->sellIn < 11) {
-                            if ($this->items[$i]->quality < 50) {
-                                $this->items[$i]->quality = $this->items[$i]->quality + 1;
-                            }
+                if ($item->name == "Backstage passes to a TAFKAL80ETC concert") {
+                    if ($item->sellIn < 11) {
+                        if ($item->quality < 50) {
+                            $item->quality = $item->quality + 1;
                         }
+                    }
 
-                        if ($this->items[$i]->sellIn < 6) {
-                            if ($this->items[$i]->quality < 50) {
-                                $this->items[$i]->quality = $this->items[$i]->quality + 1;
-                            }
+                    if ($item->sellIn < 6) {
+                        if ($item->quality < 50) {
+                            $item->quality = $item->quality + 1;
                         }
                     }
                 }
             }
+        }
 
-            if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") {
-                $this->items[$i]->sellIn = $this->items[$i]->sellIn - 1;
-            }
+        if ($item->name != "Sulfuras, Hand of Ragnaros") {
+            $item->sellIn = $item->sellIn - 1;
+        }
 
-            if ($this->items[$i]->sellIn < 0) {
-                if ($this->items[$i]->name != "Aged Brie") {
-                    if ($this->items[$i]->name != "Backstage passes to a TAFKAL80ETC concert") {
-                        if ($this->items[$i]->quality > 0) {
-                            if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") {
-                                $this->items[$i]->quality = $this->items[$i]->quality - 1;
-                            }
+        if ($item->sellIn < 0) {
+            if ($item->name != "Aged Brie") {
+                if ($item->name != "Backstage passes to a TAFKAL80ETC concert") {
+                    if ($item->quality > 0) {
+                        if ($item->name != "Sulfuras, Hand of Ragnaros") {
+                            $item->quality = $item->quality - 1;
                         }
-                    } else {
-                        $this->items[$i]->quality = $this->items[$i]->quality - $this->items[$i]->quality;
                     }
                 } else {
-                    if ($this->items[$i]->quality < 50) {
-                        $this->items[$i]->quality = $this->items[$i]->quality + 1;
-                    }
+                    $item->quality = $item->quality - $item->quality;
+                }
+            } else {
+                if ($item->quality < 50) {
+                    $item->quality = $item->quality + 1;
                 }
             }
+        }
+    }
+
+    private function increaseQuality(Item $item) {
+        if ($item->quality < 50) {
+            $item->quality++;
+        }
+    }
+
+    private function decreaseQuality(Item $item) {
+        if ($item->quality > 0) {
+            $item->quality--;
         }
     }
 }
