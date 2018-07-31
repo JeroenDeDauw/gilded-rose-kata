@@ -2,6 +2,12 @@
 
 namespace GildedRose;
 
+use GildedRose\Items\BackstageItem;
+use GildedRose\Items\CheeseItem;
+use GildedRose\Items\CommonItem;
+use GildedRose\Items\ConjuredItem;
+use GildedRose\Items\LegendaryItem;
+
 /**
  * Hi and welcome to team Gilded Rose.
  *
@@ -54,16 +60,16 @@ class Program
         echo "HELLO\n";
 
         $app = new Program(array(
-              new Item(array( 'name' => "+5 Dexterity Vest",'sellIn' => 10,'quality' => 20)),
-              new Item(array( 'name' => "Aged Brie",'sellIn' => 2,'quality' => 0)),
-              new Item(array( 'name' => "Elixir of the Mongoose",'sellIn' => 5,'quality' => 7)),
-              new Item(array( 'name' => "Sulfuras, Hand of Ragnaros",'sellIn' => 0,'quality' => 80)),
-              new Item(array(
+              new CommonItem(array( 'name' => "+5 Dexterity Vest",'sellIn' => 10,'quality' => 20)),
+              new CheeseItem(array( 'name' => "Aged Brie",'sellIn' => 2,'quality' => 0)),
+              new CommonItem(array( 'name' => "Elixir of the Mongoose",'sellIn' => 5,'quality' => 7)),
+              new LegendaryItem(array( 'name' => "Sulfuras, Hand of Ragnaros",'sellIn' => 0,'quality' => 80)),
+              new BackstageItem(array(
                      'name' => "Backstage passes to a TAFKAL80ETC concert",
                      'sellIn' => 15,
                      'quality' => 20
               )),
-              new Item(array('name' => "Conjured Mana Cake",'sellIn' => 3,'quality' => 6)),
+              new ConjuredItem(array('name' => "Conjured Mana Cake",'sellIn' => 3,'quality' => 6)),
         ));
 
         $app->UpdateQuality();
