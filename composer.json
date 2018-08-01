@@ -6,8 +6,11 @@
             "GildedRose\\": "src/"
         }
     },
+    "require": {
+        "php": ">=7.1"
+    },
     "require-dev": {
-        "phpunit/phpunit": "~4.8.0"
+        "phpunit/phpunit": "~6.5.0"
     }
 }
 

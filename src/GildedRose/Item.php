@@ -2,6 +2,9 @@
 
 namespace GildedRose;
 
+/**
+ * @author Mr. Goblin
+ */
 class Item
 {
     public $name;
