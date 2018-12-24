@@ -39,15 +39,15 @@ class Program
     public function UpdateQuality()
     {
         for ($i = 0; $i < count($this->items); $i++) {
-            if ($this->items[$i]->name != "Aged Brie" && $this->items[$i]->name != "Backstage passes to a TAFKAL80ETC concert") {
-                if ($this->items[$i]->quality > 0) {
-                    if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") {
+            if ($this->items[$i]->name != "Aged Brie" && $this->items[$i]->name != "Backstage passes to a TAFKAL80ETC concert") { // Quality decreases with time.
+                if ($this->items[$i]->quality > 0) { // Quality is still above zero, can be decreased.
+                    if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") { // Quality of Legendary does not decrease.
                         $this->items[$i]->quality = $this->items[$i]->quality - 1;
                     }
                 }
-            } else {
+            } else { // Quality increases with time.
                 if ($this->items[$i]->quality < 50) {
-                    $this->items[$i]->quality = $this->items[$i]->quality + 1;
+                    $this->items[$i]->quality += 1;
 
                     if ($this->items[$i]->name == "Backstage passes to a TAFKAL80ETC concert") {
                         if ($this->items[$i]->sellIn < 11) {
@@ -78,7 +78,7 @@ class Program
                             }
                         }
                     } else {
-                        $this->items[$i]->quality = $this->items[$i]->quality - $this->items[$i]->quality;
+                        $this->items[$i]->quality = 0;
                     }
                 } else {
                     if ($this->items[$i]->quality < 50) {
@@ -86,6 +86,8 @@ class Program
                     }
                 }
             }
+
+            //
         }
     }
 }
